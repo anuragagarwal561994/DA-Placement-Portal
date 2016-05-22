@@ -3,19 +3,18 @@
 import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
-import {Schema} from 'mongoose';
+import { Schema } from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
+const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
+var options = { discriminatorKey: 'role' };
 
 var UserSchema = new Schema({
+  id: Number,
   name: String,
   email: {
     type: String,
     lowercase: true
-  },
-  role: {
-    type: String,
-    default: 'user'
   },
   password: String,
   provider: String,
@@ -24,7 +23,7 @@ var UserSchema = new Schema({
   twitter: {},
   google: {},
   github: {}
-});
+}, options);
 
 /**
  * Virtuals
@@ -212,7 +211,7 @@ UserSchema.methods = {
 
     if (!callback) {
       return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength)
-                   .toString('base64');
+        .toString('base64');
     }
 
     return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, (err, key) => {
