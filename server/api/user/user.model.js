@@ -7,7 +7,7 @@ import { Schema } from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
-var options = { discriminatorKey: 'role' };
+const options = { discriminatorKey: 'role' };
 
 var UserSchema = new Schema({
   id: Number,
