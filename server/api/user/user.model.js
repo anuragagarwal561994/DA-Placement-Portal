@@ -10,14 +10,15 @@ const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
 const options = { discriminatorKey: 'role' };
 
 var UserSchema = new Schema({
-  id: Number,
+  id: {
+    type: Number
+  },
   name: String,
   email: {
     type: String,
     lowercase: true
   },
   password: String,
-  provider: String,
   salt: String,
   facebook: {},
   twitter: {},
@@ -96,6 +97,13 @@ UserSchema
 var validatePresenceOf = function(value) {
   return value && value.length;
 };
+
+// Setter and Getter Methods.
+UserSchema
+  .path('email')
+  .get(function(argument) {
+    return this.id + '@daiict.ac.in'
+  })
 
 /**
  * Pre-save hook
