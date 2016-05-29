@@ -11,7 +11,8 @@ const options = { discriminatorKey: 'role' };
 
 var UserSchema = new Schema({
   id: {
-    type: Number
+    type: Number,
+    required: true
   },
   name: String,
   email: {
@@ -19,11 +20,7 @@ var UserSchema = new Schema({
     lowercase: true
   },
   password: String,
-  salt: String,
-  facebook: {},
-  twitter: {},
-  google: {},
-  github: {}
+  salt: String
 }, options);
 
 /**

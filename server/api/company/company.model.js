@@ -69,9 +69,10 @@ var CompanySchema = new mongoose.Schema({
   info: String,
   active: Boolean,
   editorID: {
-  	type: Number,
-  	ref: 'User'
-  }
+    type: Number,
+    ref: 'User'
+  },
+  linkedin: {}
 }, options);
 
 export default User.discriminator('Company', CompanySchema);
