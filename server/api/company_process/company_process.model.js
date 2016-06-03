@@ -4,12 +4,12 @@ import mongoose from 'mongoose';
 
 var CompanyProcessSchema = new mongoose.Schema({
   company_id: {
-    type: mongoose.Schema.Objectid,
-    ref: 'Company',
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
     required: true
   },
   process_id: {
-    type: mongoose.Schema.Objectid,
+    type: mongoose.Schema.ObjectId,
     ref: 'Process',
     required: true
   }

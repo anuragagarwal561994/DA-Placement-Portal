@@ -4,12 +4,12 @@ import mongoose from 'mongoose';
 
 var ProcessStudentSchema = new mongoose.Schema({
   process_id: {
-    type: mongoose.Schema.Objectid,
+    type: mongoose.Schema.ObjectId,
     ref: 'Process',
     required: true
   },
   user_id: {
-    type: mongoose.Schema.Objectid,
+    type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
   }
