@@ -6,15 +6,24 @@ const options = {
   discriminatorKey: 'role'
 };
 var CommitteeSchema = new mongoose.Schema({
-  mobileNumber: String,
+  mobileNumber: {
+    type: String,
+    default: null,
+    validate: {
+      validator: function(value) {
+        return /\d{10}/.test(value);
+      },
+      message: '{VALUE} is not a valid Mobile Number!'
+    }
+  },
   alternateEmail: {
     type: String,
+    default: null,
     validate: {
       validator: function(value) {
         return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
       }
-    },
-    default: null
+    }
   },
   isActive: {
     type: Boolean,
