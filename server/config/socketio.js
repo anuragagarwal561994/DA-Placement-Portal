@@ -17,6 +17,16 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/studentOffers/studentOffers.socket').register(socket);
+  require('../api/offers/offers.socket').register(socket);
+  require('../api/processDetails/processDetails.socket').register(socket);
+  require('../api/eventRegistrations/eventRegistrations.socket').register(socket);
+  require('../api/events/events.socket').register(socket);
+  require('../api/officer/officer.socket').register(socket);
+  require('../api/committee/committee.socket').register(socket);
+  require('../api/process/process.socket').register(socket);
+  require('../api/company/company.socket').register(socket);
+  require('../api/student/student.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 
 }

@@ -3,28 +3,36 @@
 import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
-import {Schema} from 'mongoose';
+
+import Schema from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
+const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
+const options = {
+  discriminatorKey: 'role'
+};
 
 var UserSchema = new Schema({
+  id: {
+    type: Number,
+    required: true
+  },
   name: String,
   email: {
     type: String,
     lowercase: true
   },
-  role: {
-    type: String,
-    default: 'user'
-  },
   password: String,
-  provider: String,
   salt: String,
-  facebook: {},
-  twitter: {},
-  google: {},
-  github: {}
-});
+  placementDrive: Number
+}, options);
+
+UserSchema.index({
+  id: 1,
+  placementDrive: 1
+}, {
+  unique: true
+})
 
 /**
  * Virtuals
@@ -79,7 +87,9 @@ UserSchema
   .path('email')
   .validate(function(value, respond) {
     var self = this;
-    return this.constructor.findOne({ email: value }).exec()
+    return this.constructor.findOne({
+        email: value
+      }).exec()
       .then(function(user) {
         if (user) {
           if (self.id === user.id) {
@@ -97,6 +107,13 @@ UserSchema
 var validatePresenceOf = function(value) {
   return value && value.length;
 };
+
+// Setter and Getter Methods.
+UserSchema
+  .path('email')
+  .get(function(argument) {
+    return this.id + '@daiict.ac.in'
+  })
 
 /**
  * Pre-save hook
@@ -212,7 +229,7 @@ UserSchema.methods = {
 
     if (!callback) {
       return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength)
-                   .toString('base64');
+        .toString('base64');
     }
 
     return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, (err, key) => {
