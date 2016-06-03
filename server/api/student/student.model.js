@@ -3,7 +3,9 @@
 import mongoose from 'mongoose';
 import User from '../user/user.model';
 
-const options = { discriminatorKey: 'role' };
+const options = {
+  discriminatorKey: 'role'
+};
 var StudentSchema = new mongoose.Schema({
   firstName: {
     type: String,

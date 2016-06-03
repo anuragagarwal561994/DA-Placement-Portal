@@ -3,11 +3,14 @@
 import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
-import { Schema } from 'mongoose';
+
+import Schema from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
-const options = { discriminatorKey: 'role' };
+const options = {
+  discriminatorKey: 'role'
+};
 
 var UserSchema = new Schema({
   id: {
@@ -20,8 +23,16 @@ var UserSchema = new Schema({
     lowercase: true
   },
   password: String,
-  salt: String
+  salt: String,
+  placementDrive: Number
 }, options);
+
+UserSchema.index({
+  id: 1,
+  placementDrive: 1
+}, {
+  unique: true
+})
 
 /**
  * Virtuals
@@ -76,7 +87,9 @@ UserSchema
   .path('email')
   .validate(function(value, respond) {
     var self = this;
-    return this.constructor.findOne({ email: value }).exec()
+    return this.constructor.findOne({
+        email: value
+      }).exec()
       .then(function(user) {
         if (user) {
           if (self.id === user.id) {

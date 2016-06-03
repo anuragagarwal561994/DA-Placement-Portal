@@ -24,7 +24,7 @@ var CompanySchema = new mongoose.Schema({
     default: null,
     required: true
   },
-  contry: {
+  country: {
     type: String,
     default: 'India',
     uppercase: true,
@@ -76,4 +76,3 @@ var CompanySchema = new mongoose.Schema({
 }, options);
 
 export default User.discriminator('Company', CompanySchema);
-// export default mongoose.model('Company', CompanySchema);
