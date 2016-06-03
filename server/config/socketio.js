@@ -20,8 +20,6 @@ function onConnect(socket) {
   require('../api/officer/officer.socket').register(socket);
   require('../api/committee/committee.socket').register(socket);
   require('../api/process/process.socket').register(socket);
-  require('../api/company_process/company_process.socket').register(socket);
-  require('../api/process_student/process_student.socket').register(socket);
   require('../api/company/company.socket').register(socket);
   require('../api/student/student.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);

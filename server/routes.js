@@ -12,8 +12,6 @@ export default function(app) {
   app.use('/api/officer', require('./api/officer'));
   app.use('/api/committee', require('./api/committee'));
   app.use('/api/process', require('./api/process'));
-  app.use('/api/company_processs', require('./api/company_process'));
-  app.use('/api/process_students', require('./api/process_student'));
   app.use('/api/companies', require('./api/company'));
   app.use('/api/students', require('./api/student'));
   app.use('/api/things', require('./api/thing'));
