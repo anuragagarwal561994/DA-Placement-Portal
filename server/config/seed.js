@@ -6,6 +6,7 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Officer from '../api/officer/officer.model';
 
 Thing.find({}).remove()
   .then(() => {
@@ -48,7 +49,6 @@ User.find({}).remove()
       password: 'test'
     }, {
       id: 201569007,
-      role: 'admin',
       name: 'Admin',
       email: 'admin@example.com',
       password: 'admin'
@@ -57,3 +57,23 @@ User.find({}).remove()
       console.log('finished populating users');
     });
   });
+
+  Officer.find({}).remove()
+    .then(() => {
+      Officer.create({
+        id: 123,
+        name: 'Test User',
+        email: '123@example.com',
+        mobileNumber: 7894561238,
+        password: 'test'
+      }, {
+        id: 456,
+        name: 'Admin',
+        email: '456@example.com',
+        mobileNumber: 7894561838,
+        password: 'admin'
+      })
+      .then(() => {
+        console.log('finished populating Officer');
+      });
+    });

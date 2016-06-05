@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var EventsSchema = new mongoose.Schema({
-  eventID: mongoose.Schema.Types.ObjectId
+  eventID: mongoose.Schema.Types.ObjectId,
   eventName: {
     type: String,
     required: true

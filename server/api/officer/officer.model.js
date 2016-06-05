@@ -1,6 +1,11 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import User from '../user/user.model';
+
+const options = {
+  discriminatorKey: 'role'
+};
 
 var OfficerSchema = new mongoose.Schema({
   mobileNumber: {
@@ -13,6 +18,6 @@ var OfficerSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid Mobile Number!'
     }
   }
-});
+}, options);
 
 export default User.discriminator('Officer', OfficerSchema);

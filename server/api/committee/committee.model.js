@@ -1,6 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import User from '../user/user.model';
 
 const options = {
   discriminatorKey: 'role'

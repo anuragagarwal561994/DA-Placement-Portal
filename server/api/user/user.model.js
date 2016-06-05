@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 
-import Schema from 'mongoose';
+import {Schema} from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];

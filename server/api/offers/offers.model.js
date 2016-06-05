@@ -7,7 +7,7 @@ var OffersSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Events',
     required: true
-  }
+  },
   converted: {
     type: Boolean,
     default: false
@@ -31,7 +31,7 @@ var OffersSchema = new mongoose.Schema({
   CPI: {
     type: Number,
     min: 0,
-    max: 10.00
+    max: 10.00,
     default: 0
   },
   CTC: {
