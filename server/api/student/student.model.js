@@ -6,15 +6,14 @@ import User from '../user/user.model';
 const options = {
   discriminatorKey: 'role'
 };
-
 var StudentSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: true,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   middleName: {
     type: String,
@@ -227,4 +226,3 @@ StudentSchema.path('graduation').set(function(num) {
 })
 
 export default User.discriminator('Student', StudentSchema);
-// export default mongoose.model('Student', StudentSchema);

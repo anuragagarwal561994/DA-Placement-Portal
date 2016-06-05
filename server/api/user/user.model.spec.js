@@ -5,10 +5,11 @@ import User from './user.model';
 var user;
 var genUser = function() {
   user = new User({
-    provider: 'local',
-    name: 'Fake User',
-    email: 'test@example.com',
-    password: 'password'
+    id: 201301433,
+    name: "test_user",
+    password: "password",
+    email: "201301433@daiict.ac.in",
+    placementDrive: 2016
   });
   return user;
 };

@@ -13,67 +13,71 @@ Thing.find({}).remove()
     Thing.create({
       name: 'Development Tools',
       info: 'Integration with popular tools such as Bower, Grunt, Babel, Karma, ' +
-             'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +
-             'Stylus, Sass, and Less.'
+        'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +
+        'Stylus, Sass, and Less.'
     }, {
       name: 'Server and Client integration',
       info: 'Built with a powerful and fun stack: MongoDB, Express, ' +
-             'AngularJS, and Node.'
+        'AngularJS, and Node.'
     }, {
       name: 'Smart Build System',
       info: 'Build system ignores `spec` files, allowing you to keep ' +
-             'tests alongside code. Automatic injection of scripts and ' +
-             'styles into your index.html'
+        'tests alongside code. Automatic injection of scripts and ' +
+        'styles into your index.html'
     }, {
       name: 'Modular Structure',
       info: 'Best practice client and server structures allow for more ' +
-             'code reusability and maximum scalability'
+        'code reusability and maximum scalability'
     }, {
       name: 'Optimized Build',
       info: 'Build process packs up your templates as a single JavaScript ' +
-             'payload, minifies your scripts/css/images, and rewrites asset ' +
-             'names for caching.'
+        'payload, minifies your scripts/css/images, and rewrites asset ' +
+        'names for caching.'
     }, {
       name: 'Deployment Ready',
       info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
-             'and openshift subgenerators'
+        'and openshift subgenerators'
     });
   });
 
 User.find({}).remove()
   .then(() => {
     User.create({
-      id: 201301433,
-      name: 'Test User',
-      email: 'test@example.com',
-      password: 'test'
-    }, {
-      id: 201569007,
-      name: 'Admin',
-      email: 'admin@example.com',
-      password: 'admin'
-    })
-    .then(() => {
-      console.log('finished populating users');
-    });
+        id: 201301433,
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'test',
+        placementDrive: 2016
+      }, {
+        id: 201569007,
+        name: 'Admin',
+        email: 'admin@example.com',
+        password: 'admin',
+        placementDrive: 2016
+      })
+      .then(() => {
+        console.log('finished populating users');
+      });
   });
 
-  Officer.find({}).remove()
-    .then(() => {
-      Officer.create({
+Officer.find({}).remove()
+  .then(() => {
+    Officer.create({
         id: 123,
         name: 'Test User',
         email: '123@example.com',
         mobileNumber: 7894561238,
-        password: 'test'
+        password: 'test',
+        placementDrive: 2016
       }, {
         id: 456,
         name: 'Admin',
         email: '456@example.com',
         mobileNumber: 7894561838,
-        password: 'admin'
+        password: 'admin',
+        placementDrive: 2016
       })
       .then(() => {
         console.log('finished populating Officer');
       });
-    });
+  });

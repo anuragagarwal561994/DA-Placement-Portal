@@ -4,7 +4,9 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 
-import {Schema} from 'mongoose';
+import {
+  Schema
+} from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 const userRoles = ['Student', 'Officer', 'Comittee', 'Company'];
@@ -20,11 +22,19 @@ var UserSchema = new Schema({
   name: String,
   email: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    default: null
   },
   password: String,
   salt: String,
-  placementDrive: Number
+  placementDrive: {
+    type: Number,
+    default: 2016
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  }
 }, options);
 
 UserSchema.index({
@@ -61,16 +71,6 @@ UserSchema
 /**
  * Validations
  */
-
-// Validate empty email
-UserSchema
-  .path('email')
-  .validate(function(email) {
-    if (authTypes.indexOf(this.provider) !== -1) {
-      return true;
-    }
-    return email.length;
-  }, 'Email cannot be blank');
 
 // Validate empty password
 UserSchema
@@ -111,7 +111,7 @@ var validatePresenceOf = function(value) {
 // Setter and Getter Methods.
 UserSchema
   .path('email')
-  .get(function(argument) {
+  .get(() => {
     return this.id + '@daiict.ac.in'
   })
 
@@ -125,7 +125,7 @@ UserSchema
       return next();
     }
 
-    if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1) {
+    if (!validatePresenceOf(this.password)) {
       return next(new Error('Invalid password'));
     }
 
@@ -143,6 +143,10 @@ UserSchema
         next();
       });
     });
+
+    if (this.role != "Company") {
+      this.email = this.id + "@daiict.ac.in";
+    }
   });
 
 /**
